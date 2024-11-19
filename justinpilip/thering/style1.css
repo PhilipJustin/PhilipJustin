@@ -1,0 +1,45 @@
+/* Tombol Back to Menu menggunakan SVG */
+.back-to-menu {
+    position: fixed;  /* Menempatkan tombol tetap di layar */
+    top: 20px;        /* Jarak dari atas */
+    left: 20px;       /* Jarak dari kiri */
+    background-color: transparent; /* Latar belakang transparan */
+    border: none;     /* Menghapus border */
+    padding: 10px;    /* Memberikan ruang di sekitar ikon */
+    cursor: pointer; /* Menambahkan pointer saat hover */
+    transition: all 0.3s ease; /* Efek transisi halus saat hover */
+    display: flex;    /* Flexbox untuk mengatur isi */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Efek hover untuk tombol Back to Menu */
+.back-to-menu:hover {
+    background-color: rgba(0, 0, 0, 0.1);  /* Memberikan efek latar belakang saat hover */
+    transform: scale(1.1);  /* Efek memperbesar sedikit tombol saat hover */
+}
+
+/* Memberikan bayangan saat tombol difokuskan */
+.back-to-menu:focus {
+    outline: none; /* Menghapus outline default */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Menambahkan efek glow biru */
+}
+
+/* Menyesuaikan ukuran SVG */
+.back-to-menu svg {
+    width: 30px;    /* Ukuran ikon */
+    height: 30px;   /* Ukuran ikon */
+    fill: #007bff;  /* Warna ikon biru */
+}
+/* Mengatur background-color untuk halaman cart.php */
+body {
+    background-color: #d8b370; /* Warna latar belakang yang sama dengan index */
+    font-family: Arial, sans-serif; /* Menambahkan font default */
+    margin: 0; /* Menghilangkan margin default dari browser */
+    padding: 0; /* Menghilangkan padding default */
+}
+
+/* Jika Anda ingin memastikan konten lainnya terpengaruh */
+.cart-container {
+    padding: 20px; /* Memberikan ruang di sekitar konten */
+}

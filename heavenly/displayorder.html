@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Order - Heavenly</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .button {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .delete-button {
+            background-color: #FF5733;
+        }
+        .delete-button:hover {
+            background-color: #c70039;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Daftar Pesanan Pie Susu Heavenly</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Order</th>
+                    <th>Nama Pembeli</th>
+                    <th>Kelas</th>
+                    <th>Jumlah</th>
+                    <th>Total Harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Membuka koneksi untuk mengambil data
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Mengambil data pesanan
+                $sql = "SELECT * FROM orderheavenly";
+                $result = $conn->query($sql);
+
+                // Mengecek apakah ada data
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        $totalharga = number_format($row['totalharga'], 2, ',', '.'); // Format total harga
+                        echo "<tr>
+                                <td>{$row['id_order']}</td>
+                                <td>{$row['namapembeli']}</td>
+                                <td>{$row['kelas']}</td>
+                                <td>{$row['quantity']}</td>
+                                <td>Rp {$totalharga}</td>
+                                <td>
+                                    <a href='edit_order.php?id={$row['id_order']}' class='button'>Edit</a> 
+                                    <a href='?delete_id={$row['id_order']}' class='button delete-button' onclick='return confirm(\"Apakah Anda yakin ingin menghapus pesanan ini?\")'>Hapus</a>
+                                </td>
+                            </tr>";
+                    }
+                } else {
+                    echo "<tr><td colspan='6'>Tidak ada pesanan</td></tr>";
+                }
+
+                // Menutup koneksi setelah query
+                $conn->close();
+                ?>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
